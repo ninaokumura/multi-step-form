@@ -17,10 +17,10 @@ const InputDefault = styled.input<{
   border-radius: 4px;
   width: full;
   min-width: 400px;
-  border: 0.5px solid ${({ theme }) => theme.colors["cool-gray"]};
+  border: 1px solid ${({ theme }) => theme.colors["cool-gray"]};
   padding: 8px;
   &:focus {
-    outline: 0.5px solid
+    outline: 1px solid
       ${({ theme, error }) =>
         theme.colors[error ? "strawberry-red" : "pastel-blue"]};
   }
@@ -28,7 +28,7 @@ const InputDefault = styled.input<{
   ${({ error, theme }) =>
     error &&
     css`
-      outline: 0.5px solid ${({ theme }) => theme.colors["strawberry-red"]};
+      outline: 1px solid ${({ theme }) => theme.colors["strawberry-red"]};
     `}
 `;
 

@@ -2,7 +2,7 @@ import Input from "./Input";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
-  title: "stories/Input",
+  title: "stories/Input/Input",
   component: Input,
   argTypes: {
     backgroundColor: { control: "color" },

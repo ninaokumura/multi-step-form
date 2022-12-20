@@ -2,7 +2,7 @@ import Input from "./Input";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 export default {
-  title: "stories/Input/Input",
+  title: "stories/Input",
   component: Input,
   argTypes: {
     backgroundColor: { control: "color" },
@@ -20,4 +20,5 @@ export const With_ErrorMessage = Template.bind({});
 With_ErrorMessage.args = {
   label: "Name",
   errorMessage: "Field required",
+  placeholder: "e.g. +64 027 876 5436",
 };

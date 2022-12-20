@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 type Props = {
   type: string;
@@ -9,27 +9,23 @@ type Props = {
   label: string;
   errorMessage: string;
   onChange: (evt: ChangeEvent) => void;
+  placeholder: string;
 };
 
 const InputDefault = styled.input<{
   error?: boolean;
 }>`
+  border: none;
+  outline: 1px solid
+    ${({ theme, error }) =>
+      theme.colors[error ? "strawberry-red" : "light-gray"]};
   border-radius: 4px;
   width: full;
   min-width: 400px;
-  border: 1px solid ${({ theme }) => theme.colors["cool-gray"]};
   padding: 8px;
   &:focus {
-    outline: 1px solid
-      ${({ theme, error }) =>
-        theme.colors[error ? "strawberry-red" : "pastel-blue"]};
+    outline: 1px solid ${({ theme }) => theme.colors["pastel-blue"]};
   }
-
-  ${({ error, theme }) =>
-    error &&
-    css`
-      outline: 1px solid ${({ theme }) => theme.colors["strawberry-red"]};
-    `}
 `;
 
 const Label = styled.label`
@@ -62,6 +58,7 @@ const Input = (props: Props) => {
         id={props.id}
         onChange={props.onChange}
         error={Boolean(props.errorMessage)}
+        placeholder={props.placeholder}
       />
     </Label>
   );

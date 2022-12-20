@@ -19,6 +19,9 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  :hover {
+    outline: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
+  }
 `;
 
 const PlanTitle = styled.h4`

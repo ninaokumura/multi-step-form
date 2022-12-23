@@ -36,10 +36,10 @@ const SHAPE = {
   round: css`
     padding: 0px;
     border-radius: 100%;
-    width: 50px;
-    height: 50px;
-    color: ${({ theme }) => theme.colors["marine-blue"]};
-    border: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
+    width: 40px;
+    height: 40px;
+    color: ${({ theme }) => theme.colors["light-gray"]};
+    border: 1px solid ${({ theme }) => theme.colors["light-gray"]};
   `,
 };
 

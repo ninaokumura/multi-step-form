@@ -1,25 +1,32 @@
 import styled from "styled-components";
 import Button from "../stories/Button/Button";
 import desktopImg from "../assets/bg-sidebar-desktop.svg";
+import { Link } from "react-router-dom";
 
-type Props = {};
+type Props = {
+  children: React.ReactElement | string;
+};
 
 const STEPS = [
   {
     id: 1,
     step: "Your info",
+    pageLink: "/personal-info",
   },
   {
     id: 2,
     step: "Select plan",
+    pageLink: "/select-plan",
   },
   {
     id: 3,
     step: "Add-ons",
+    pageLink: "/add-ons",
   },
   {
     id: 4,
     step: "Summary",
+    pageLink: "/summary",
   },
 ];
 
@@ -28,12 +35,12 @@ const Wrapper = styled.aside`
   font-family: ${({ theme }) => theme.fonts.ubuntu};
   flex: 1;
   display: flex;
-  flex-direction: column;
+  gap: 150px;
 `;
 
 const SidebarWrapper = styled.ul`
   padding: 40px;
-  max-width: 400px;
+  min-width: 300px;
   border-radius: 6px;
   background-image: url(${desktopImg});
   background-repeat: no-repeat;
@@ -65,17 +72,15 @@ const StepDescription = styled.div`
   letter-spacing: 0.8px;
 `;
 
-const Sidebar = (props: Props) => {
+const MainLayout = (props: Props) => {
   return (
     <Wrapper>
       <SidebarWrapper>
-        {STEPS.map((step) => (
+        {STEPS.map(step => (
           <ListItems key={step.id}>
-            <Button
-              shape="round"
-              children={String(step.id)}
-              onClick={() => null}
-            />
+            <Link to={step.pageLink}>
+              <Button shape="round" children={String(step.id)} />
+            </Link>
 
             <div>
               <StepNumber>Step {step.id}</StepNumber>
@@ -84,8 +89,9 @@ const Sidebar = (props: Props) => {
           </ListItems>
         ))}
       </SidebarWrapper>
+      {props.children}
     </Wrapper>
   );
 };
 
-export default Sidebar;
+export default MainLayout;

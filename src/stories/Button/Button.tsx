@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 type ButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   children: string;
   variant?: "primary" | "secondary";
   size?: "sm" | "md";
@@ -44,8 +44,9 @@ const SHAPE = {
 };
 
 const StyledButton = styled.button<ButtonProps>`
-  ${(props) => VARIANTS[props.variant ?? "primary"]};
-  ${(props) => (props.shape ? SHAPE[props.shape] : null)};
+  cursor: pointer;
+  ${props => VARIANTS[props.variant ?? "primary"]};
+  ${props => (props.shape ? SHAPE[props.shape] : null)};
 `;
 
 const Button = (props: ButtonProps) => {

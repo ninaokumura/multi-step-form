@@ -5,9 +5,9 @@ type Props = {
   type: string;
   value: string;
   name: string;
-  id: string;
+  id?: string;
   label: string;
-  errorMessage: string;
+  errorMessage?: string;
   onChange: (evt: ChangeEvent) => void;
   placeholder: string;
 };

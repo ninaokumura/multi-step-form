@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import PersonalInfo from "./pages/personal-info";
 import AddOns from "./pages/add-ons";
 import SelectPlan from "./pages/select-plan";
@@ -19,6 +19,7 @@ function App() {
   return (
     <MainWrapper>
       <Routes>
+        <Route path="/" element={<Navigate to="/personal-info" />} />
         <Route path="/personal-info" element={<PersonalInfo />} />
         <Route path="/add-ons" element={<AddOns />} />
         <Route path="/select-plan" element={<SelectPlan />} />

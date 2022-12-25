@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { setTokenSourceMapRange } from "typescript";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Button from "../stories/Button/Button";
 import Input from "../stories/Input/Input";
@@ -40,6 +40,13 @@ const PersonalInfo = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // 👇️ navigate programmatically
+    navigate({ pathname: "/select-plan" });
+  };
 
   return (
     <MainLayout>
@@ -88,7 +95,13 @@ const PersonalInfo = () => {
           </div>
 
           <ButtonWrapper>
-            <Button variant="secondary" children="Next Step" size="md" />
+            <Button
+              variant="secondary"
+              children="Next Step"
+              size="md"
+              onClick={handleClick}
+              color="default"
+            />
           </ButtonWrapper>
         </Content>
       </Wrapper>

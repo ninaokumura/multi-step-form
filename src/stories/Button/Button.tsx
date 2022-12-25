@@ -7,6 +7,7 @@ type ButtonProps = {
   variant?: "primary" | "secondary";
   size?: "sm" | "md";
   shape?: "round";
+  color: "default" | "active";
 };
 
 const VARIANTS = {
@@ -38,8 +39,18 @@ const SHAPE = {
     border-radius: 100%;
     width: 40px;
     height: 40px;
-    color: ${({ theme }) => theme.colors["light-gray"]};
+    font-weight: bold;
     border: 1px solid ${({ theme }) => theme.colors["light-gray"]};
+  `,
+};
+
+const COLOR = {
+  default: css`
+    color: ${({ theme }) => theme.colors["light-gray"]};
+  `,
+  active: css`
+    background-color: ${({ theme }) => theme.colors["light-blue"]};
+    color: ${({ theme }) => theme.colors["marine-blue"]};
   `,
 };
 
@@ -47,6 +58,7 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   ${props => VARIANTS[props.variant ?? "primary"]};
   ${props => (props.shape ? SHAPE[props.shape] : null)};
+  ${props => (props.color ? COLOR[props.color] : undefined)}
 `;
 
 const Button = (props: ButtonProps) => {
@@ -55,6 +67,7 @@ const Button = (props: ButtonProps) => {
       onClick={props.onClick}
       variant={props.variant}
       shape={props.shape}
+      color={props.color}
     >
       {props.children}
     </StyledButton>

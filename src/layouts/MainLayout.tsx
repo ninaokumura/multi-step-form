@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "../stories/Button/Button";
 import desktopImg from "../assets/bg-sidebar-desktop.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 type Props = {
   children: React.ReactElement | string;
@@ -73,13 +73,20 @@ const StepDescription = styled.div`
 `;
 
 const MainLayout = (props: Props) => {
+  const location = useLocation();
   return (
     <Wrapper>
       <SidebarWrapper>
         {STEPS.map(step => (
           <ListItems key={step.id}>
             <Link to={step.pageLink}>
-              <Button shape="round" children={String(step.id)} />
+              <Button
+                shape="round"
+                children={String(step.id)}
+                color={
+                  location.pathname === step.pageLink ? "active" : "default"
+                }
+              />
             </Link>
 
             <div>

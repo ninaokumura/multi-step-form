@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import "./App.css";
-import MainLayout from "./layouts/MainLayout";
 import { Route, Routes } from "react-router-dom";
 import PersonalInfo from "./pages/personal-info";
 import AddOns from "./pages/add-ons";

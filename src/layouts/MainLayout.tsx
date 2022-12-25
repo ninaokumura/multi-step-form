@@ -31,16 +31,16 @@ const STEPS = [
 ];
 
 const Wrapper = styled.aside`
-  padding: 20px;
+  padding: 40px;
   font-family: ${({ theme }) => theme.fonts.ubuntu};
   flex: 1;
   display: flex;
-  gap: 150px;
+  gap: 100px;
 `;
 
 const SidebarWrapper = styled.ul`
   padding: 40px;
-  min-width: 300px;
+  min-width: 330px;
   border-radius: 6px;
   background-image: url(${desktopImg});
   background-repeat: no-repeat;

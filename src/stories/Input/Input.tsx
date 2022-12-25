@@ -8,7 +8,7 @@ type Props = {
   id?: string;
   label: string;
   errorMessage?: string;
-  onChange: (evt: ChangeEvent) => void;
+  onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
 };
 
@@ -21,14 +21,18 @@ const InputDefault = styled.input<{
       theme.colors[error ? "strawberry-red" : "light-gray"]};
   border-radius: 4px;
   width: full;
-  min-width: 400px;
+  min-width: 450px;
+  height: 50px;
+
   padding: 8px;
   &:focus {
-    outline: 1px solid ${({ theme }) => theme.colors["pastel-blue"]};
+    outline: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
   }
 `;
 
 const Label = styled.label`
+  font-size: 14px;
+  font-weight: semi-bold;
   color: ${({ theme }) => theme.colors["marine-blue"]};
 `;
 

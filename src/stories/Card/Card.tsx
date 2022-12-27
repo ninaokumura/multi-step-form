@@ -6,21 +6,24 @@ type CardProps = {
   alt: string;
   plan: string;
   price: string;
+  role?: string;
+  onClick?: () => void;
 };
 
 const CardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors["light-gray"]};
   font-family: ${({ theme }) => theme.fonts.ubuntu};
-  max-width: 150px;
-  height: 160px;
+  height: 180px;
   border-radius: 10px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+
   :hover {
     outline: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
+    transition: outline 0.1s linear;
   }
 `;
 
@@ -36,7 +39,7 @@ const Price = styled.p`
 
 const Card = (props: CardProps) => {
   return (
-    <CardWrapper>
+    <CardWrapper role="button" onClick={props.onClick}>
       <div>
         <img src={props.src} alt={props.alt} />
       </div>

@@ -21,8 +21,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/personal-info" />} />
         <Route path="/personal-info" element={<PersonalInfo />} />
-        <Route path="/add-ons" element={<AddOns />} />
+        <Route path="/select-plan/:choice" element={<SelectPlan />} />
         <Route path="/select-plan" element={<SelectPlan />} />
+        <Route path="/add-ons" element={<AddOns />} />
         <Route path="/summary" element={<Summary />} />
       </Routes>
     </MainWrapper>

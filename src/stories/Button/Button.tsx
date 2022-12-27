@@ -7,19 +7,21 @@ type ButtonProps = {
   variant?: "primary" | "secondary";
   size?: "sm" | "md";
   shape?: "round";
-  color: "default" | "active";
+  color: "default" | "active" | "back";
 };
 
 const VARIANTS = {
   primary: css`
-    padding: 15px 30px;
     border-radius: 10px;
+    padding: 15px 0px;
+
     border: none;
     color: ${({ theme }) => theme.colors["marine-blue"]};
     background-color: transparent;
     font-family: ${({ theme }) => theme.fonts.ubuntu};
     font-size: 15px;
     text-align: center;
+    font-weight: bold;
   `,
   secondary: css`
     padding: 15px 30px;
@@ -52,13 +54,17 @@ const COLOR = {
     background-color: ${({ theme }) => theme.colors["light-blue"]};
     color: ${({ theme }) => theme.colors["marine-blue"]};
   `,
+  back: css`
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors["marine-blue"]};
+  `,
 };
 
 const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
-  ${props => VARIANTS[props.variant ?? "primary"]};
-  ${props => (props.shape ? SHAPE[props.shape] : null)};
-  ${props => (props.color ? COLOR[props.color] : undefined)}
+  ${(props) => VARIANTS[props.variant ?? "primary"]};
+  ${(props) => (props.shape ? SHAPE[props.shape] : null)};
+  ${(props) => (props.color ? COLOR[props.color] : undefined)}
 `;
 
 const Button = (props: ButtonProps) => {

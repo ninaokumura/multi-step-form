@@ -77,14 +77,16 @@ const MainLayout = (props: Props) => {
   return (
     <Wrapper>
       <SidebarWrapper>
-        {STEPS.map(step => (
+        {STEPS.map((step) => (
           <ListItems key={step.id}>
             <Link to={step.pageLink}>
               <Button
                 shape="round"
                 children={String(step.id)}
                 color={
-                  location.pathname === step.pageLink ? "active" : "default"
+                  location.pathname.includes(step.pageLink)
+                    ? "active"
+                    : "default"
                 }
               />
             </Link>

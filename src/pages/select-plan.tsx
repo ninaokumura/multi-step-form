@@ -1,6 +1,6 @@
 import React from "react";
 import MainLayout from "../layouts/MainLayout";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import arcadeIcon from "../assets/icon-arcade.svg";
 import advancedIcon from "../assets/icon-advanced.svg";
 import proIcon from "../assets/icon-pro.svg";
@@ -80,8 +80,6 @@ const SelectPlan = (props: Props) => {
   const navigate = useNavigate();
 
   const params = useParams();
-  const { choice } = params;
-  console.log({ choice });
 
   const GoBackClickHandler = () => {
     navigate({ pathname: "/personal-info" });
@@ -108,6 +106,7 @@ const SelectPlan = (props: Props) => {
                   plan={item.title}
                   price={item.price}
                   onClick={() => navigate(item.path)}
+                  active={item.path.endsWith(params.choice ?? "none")}
                 />
               </ListItem>
             ))}

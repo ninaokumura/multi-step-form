@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type CardProps = {
   src: string;
@@ -7,10 +7,21 @@ type CardProps = {
   plan: string;
   price: string;
   role?: string;
+  active?: boolean;
   onClick?: () => void;
 };
 
-const CardWrapper = styled.div`
+const VARIANTS = {
+  active: css`
+    outline: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
+    transition: outline 0.1s linear;
+    background-color: ${({ theme }) => theme.colors.alabaster};
+  `,
+};
+
+const CardWrapper = styled.div<{
+  active?: boolean;
+}>`
   border: 1px solid ${({ theme }) => theme.colors["light-gray"]};
   font-family: ${({ theme }) => theme.fonts.ubuntu};
   height: 180px;
@@ -20,10 +31,10 @@ const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  ${(props) => (props.active ? VARIANTS.active : null)}
 
   :hover {
-    outline: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
-    transition: outline 0.1s linear;
+    ${VARIANTS.active}
   }
 `;
 
@@ -39,7 +50,7 @@ const Price = styled.p`
 
 const Card = (props: CardProps) => {
   return (
-    <CardWrapper role="button" onClick={props.onClick}>
+    <CardWrapper role="button" onClick={props.onClick} active={props.active}>
       <div>
         <img src={props.src} alt={props.alt} />
       </div>

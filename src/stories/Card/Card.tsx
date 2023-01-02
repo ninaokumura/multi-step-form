@@ -9,6 +9,7 @@ type CardProps = {
   role?: string;
   active?: boolean;
   onClick?: () => void;
+  message?: string;
 };
 
 const VARIANTS = {
@@ -46,6 +47,15 @@ const PlanTitle = styled.h4`
 
 const Price = styled.p`
   color: ${({ theme }) => theme.colors["cool-gray"]};
+  font-weight: 500;
+`;
+
+const Message = styled.p`
+  color: ${({ theme }) => theme.colors["marine-blue"]};
+  opacity: 0.9;
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 8px;
 `;
 
 const Card = (props: CardProps) => {
@@ -57,6 +67,7 @@ const Card = (props: CardProps) => {
       <div>
         <PlanTitle>{props.plan}</PlanTitle>
         <Price>{props.price}</Price>
+        <Message>{props.message}</Message>
       </div>
     </CardWrapper>
   );

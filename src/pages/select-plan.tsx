@@ -42,7 +42,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-family: ${({ theme }) => theme.fonts.ubuntu};
-  font-weight: 600;
 `;
 
 const Title = styled.div`
@@ -72,25 +71,32 @@ const Content = styled.div`
   width: full;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
 `;
 
 const ButtonWrapper = styled.div`
+  max-width: 500px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  padding-top: 80px;
 `;
 
 const ToggleWrapper = styled.div`
+  max-width: 500px;
   background-color: ${({ theme }) => theme.colors["alabaster"]};
   padding: 12px 130px;
   margin-top: 20px;
   border-radius: 10px;
   display: flex;
-  align-items: center;
   color: ${({ theme }) => theme.colors["cool-gray"]};
   font-size: 16px;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
 `;
 
 const SelectPlan = (props: Props) => {
@@ -115,43 +121,46 @@ const SelectPlan = (props: Props) => {
         <Paragraph>
           You have the option of monthly or yearly billing.{" "}
         </Paragraph>
-        <Content>
-          <ListWrapper>
-            {CARD_ITEMS.map((item) => (
-              <ListItem key={item.title}>
-                <Card
-                  src={item.icon}
-                  alt={item.title}
-                  plan={item.title}
-                  price={!checked ? item.monthlyPrice : item.annualPrice}
-                  onClick={() => navigate(item.path)}
-                  active={item.path.endsWith(params.choice ?? "none")}
-                  message={checked ? "2 months free" : ""}
-                />
-              </ListItem>
-            ))}
-          </ListWrapper>
+        <MainContainer>
+          <Content>
+            <ListWrapper>
+              {CARD_ITEMS.map((item) => (
+                <ListItem key={item.title}>
+                  <Card
+                    src={item.icon}
+                    alt={item.title}
+                    plan={item.title}
+                    price={!checked ? item.monthlyPrice : item.annualPrice}
+                    onClick={() => navigate(item.path)}
+                    active={item.path.endsWith(params.choice ?? "none")}
+                    message={checked ? "2 months free" : ""}
+                    isAnnual={checked}
+                  />
+                </ListItem>
+              ))}
+            </ListWrapper>
 
-          <ToggleWrapper>
-            <div
-              style={{
-                color: !checked ? "hsl(213, 96%,18%)" : "",
-              }}
-            >
-              Monthly
-            </div>
-            <Toggle
-              checked={checked}
-              onChange={(e) => setChecked(e.target.checked)}
-            />
-            <div
-              style={{
-                color: checked ? "hsl(213, 96%,18%)" : "",
-              }}
-            >
-              Yearly
-            </div>
-          </ToggleWrapper>
+            <ToggleWrapper>
+              <div
+                style={{
+                  color: !checked ? "hsl(213, 96%,18%)" : "",
+                }}
+              >
+                Monthly
+              </div>
+              <Toggle
+                checked={checked}
+                onChange={(e) => setChecked(e.target.checked)}
+              />
+              <div
+                style={{
+                  color: checked ? "hsl(213, 96%,18%)" : "",
+                }}
+              >
+                Yearly
+              </div>
+            </ToggleWrapper>
+          </Content>
 
           <ButtonWrapper>
             <Button
@@ -169,7 +178,7 @@ const SelectPlan = (props: Props) => {
               color="back"
             />
           </ButtonWrapper>
-        </Content>
+        </MainContainer>
       </Wrapper>
     </MainLayout>
   );

@@ -8,11 +8,9 @@ import Summary from "./pages/summary";
 
 const MainWrapper = styled.div`
   min-height: 100vh;
-  border: 2px solid green;
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-  border: 1px solid red;
 `;
 
 function App() {

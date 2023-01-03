@@ -20,8 +20,7 @@ const InputDefault = styled.input<{
     ${({ theme, error }) =>
       theme.colors[error ? "strawberry-red" : "light-gray"]};
   border-radius: 4px;
-  width: full;
-  min-width: 450px;
+  width: 100%;
   height: 50px;
 
   padding: 8px;

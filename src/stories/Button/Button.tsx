@@ -7,7 +7,7 @@ type ButtonProps = {
   variant?: "primary" | "secondary";
   size?: "sm" | "md";
   shape?: "round";
-  color: "default" | "active" | "back";
+  color: "default" | "active" | "back" | "confirm";
 };
 
 const VARIANTS = {
@@ -58,10 +58,16 @@ const COLOR = {
     background-color: transparent;
     color: ${({ theme }) => theme.colors["marine-blue"]};
   `,
+  confirm: css`
+    background-color: ${({ theme }) => theme.colors["purplish-blue"]};
+  `,
 };
 
 const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
   ${(props) => VARIANTS[props.variant ?? "primary"]};
   ${(props) => (props.shape ? SHAPE[props.shape] : null)};
   ${(props) => (props.color ? COLOR[props.color] : undefined)}

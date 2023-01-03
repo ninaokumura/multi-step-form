@@ -5,6 +5,10 @@ import { Link, useLocation } from "react-router-dom";
 
 type Props = {
   children: React.ReactElement | string;
+  pageTitle: string;
+  pageDescription: string;
+  onNextClick?: () => void;
+  onPreviousClick?: () => void;
 };
 
 const STEPS = [
@@ -40,7 +44,7 @@ const Wrapper = styled.aside`
 
 const SidebarWrapper = styled.ul`
   padding: 40px;
-  min-width: 330px;
+  max-width: 330px;
   border-radius: 6px;
   background-image: url(${desktopImg});
   background-repeat: no-repeat;
@@ -72,6 +76,39 @@ const StepDescription = styled.div`
   letter-spacing: 0.8px;
 `;
 
+const ChildrenWrapper = styled.div`
+  max-width: 600px;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: ${({ theme }) => theme.fonts.ubuntu};
+`;
+
+const Children = styled.div`
+  margin-top: 20px;
+`;
+
+const Title = styled.div`
+  font-weight: bold;
+  font-size: 36px;
+  padding-bottom: 16px;
+  color: ${({ theme }) => theme.colors["marine-blue"]};
+`;
+
+const Paragraph = styled.div`
+  color: ${({ theme }) => theme.colors["cool-gray"]};
+  padding-bottom: 30px;
+`;
+
+const ButtonWrapper = styled.div`
+  max-width: 500px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+`;
+
 const MainLayout = (props: Props) => {
   const location = useLocation();
   return (
@@ -98,7 +135,48 @@ const MainLayout = (props: Props) => {
           </ListItems>
         ))}
       </SidebarWrapper>
-      {props.children}
+      <ChildrenWrapper>
+        <div>
+          <Title>{props.pageTitle}</Title>
+          <Paragraph>{props.pageDescription}</Paragraph>
+          <Children>{props.children}</Children>
+        </div>
+
+        <ButtonWrapper>
+          {location.pathname !== "/summary" && (
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={props.onNextClick}
+              color="default"
+            >
+              Next step
+            </Button>
+          )}
+
+          {location.pathname === "/summary" && (
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={props.onNextClick}
+              color="confirm"
+            >
+              Confirm
+            </Button>
+          )}
+
+          {location.pathname !== "/personal-info" && (
+            <Button
+              variant="primary"
+              size="md"
+              onClick={props.onPreviousClick}
+              color="back"
+            >
+              Go back
+            </Button>
+          )}
+        </ButtonWrapper>
+      </ChildrenWrapper>
     </Wrapper>
   );
 };

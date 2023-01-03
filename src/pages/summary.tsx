@@ -1,4 +1,4 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MainLayout from "../layouts/MainLayout";
 
@@ -9,8 +9,23 @@ const Wrapper = styled.div`
 `;
 
 const Summary = (props: Props) => {
+  const navigate = useNavigate();
+
+  const handlePreviousClick = () => {
+    navigate({ pathname: "/add-ons" });
+  };
+
+  const handleNextClick = () => {
+    navigate({ pathname: "/summary" });
+  };
+
   return (
-    <MainLayout>
+    <MainLayout
+      pageTitle="Finishing up"
+      pageDescription="Double-check everything looks OK before confirming."
+      onNextClick={handleNextClick}
+      onPreviousClick={handlePreviousClick}
+    >
       <Wrapper>summary</Wrapper>
     </MainLayout>
   );

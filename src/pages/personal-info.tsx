@@ -2,35 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import Button from "../stories/Button/Button";
 import Input from "../stories/Input/Input";
 
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 36px;
-  padding-bottom: 16px;
-  color: ${({ theme }) => theme.colors["marine-blue"]};
-`;
-
-const Paragraph = styled.div`
-  color: ${({ theme }) => theme.colors["cool-gray"]};
-  padding-bottom: 30px;
-`;
-
-const ButtonWrapper = styled.div`
-  margin: 20px 0px 0px auto;
-`;
-
-const Content = styled.div`
-  width: full;
-  max-width: 450px;
+const FormContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -43,68 +17,55 @@ const PersonalInfo = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    // 👇️ navigate programmatically
+  const handleNextClick = () => {
     navigate({ pathname: "/select-plan" });
   };
 
   return (
-    <MainLayout>
-      <Wrapper>
-        <Title>Personal info</Title>
-        <Paragraph>
-          Please provide your name, email address, and phone number.
-        </Paragraph>
-        <Content>
-          <div>
-            <Input
-              type="text"
-              value={name}
-              name="name"
-              onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-                setName(evt.currentTarget.value)
-              }
-              placeholder="e.g. Stephen King"
-              label="Name"
-            />
-          </div>
+    <MainLayout
+      pageTitle="Personal info"
+      pageDescription="Please provide your name, email address, and phone number."
+      onNextClick={handleNextClick}
+    >
+      <FormContent>
+        <div>
+          <Input
+            type="text"
+            value={name}
+            name="name"
+            onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+              setName(evt.currentTarget.value)
+            }
+            placeholder="e.g. Stephen King"
+            label="Name"
+          />
+        </div>
 
-          <div>
-            <Input
-              type="email"
-              value={email}
-              name="email"
-              onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-                setEmail(evt.currentTarget.value)
-              }
-              placeholder="e.g. stephenking@mail.com"
-              label="Email Address"
-            />
-          </div>
-          <div>
-            <Input
-              type="tel"
-              value={phoneNumber}
-              name="phone"
-              onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-                setPhoneNumber(evt.currentTarget.value)
-              }
-              placeholder="e.g. +1 234 567 890"
-              label="Phone Number"
-            />
-          </div>
-
-          <ButtonWrapper>
-            <Button
-              variant="secondary"
-              children="Next Step"
-              size="md"
-              onClick={handleClick}
-              color="default"
-            />
-          </ButtonWrapper>
-        </Content>
-      </Wrapper>
+        <div>
+          <Input
+            type="email"
+            value={email}
+            name="email"
+            onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(evt.currentTarget.value)
+            }
+            placeholder="e.g. stephenking@mail.com"
+            label="Email Address"
+          />
+        </div>
+        <div>
+          <Input
+            type="tel"
+            value={phoneNumber}
+            name="phone"
+            onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+              setPhoneNumber(evt.currentTarget.value)
+            }
+            placeholder="e.g. +1 234 567 890"
+            label="Phone Number"
+          />
+        </div>
+      </FormContent>
     </MainLayout>
   );
 };

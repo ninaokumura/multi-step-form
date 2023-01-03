@@ -45,7 +45,7 @@ const Wrapper = styled.aside`
   height: 650px;
   border-radius: 8px;
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.alabaster};
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const SidebarWrapper = styled.ul`

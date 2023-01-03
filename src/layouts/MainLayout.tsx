@@ -35,11 +35,17 @@ const STEPS = [
 ];
 
 const Wrapper = styled.aside`
-  padding: 40px;
   font-family: ${({ theme }) => theme.fonts.ubuntu};
   flex: 1;
   display: flex;
-  gap: 100px;
+  justify-content: center;
+  margin: auto;
+  gap: 80px;
+  max-width: 1000px;
+  height: 650px;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: ${({ theme }) => theme.colors.alabaster};
 `;
 
 const SidebarWrapper = styled.ul`

@@ -11,6 +11,7 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors["magnolia"]};
 `;
 
 function App() {

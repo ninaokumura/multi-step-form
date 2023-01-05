@@ -50,7 +50,7 @@ const Wrapper = styled.aside`
 
 const SidebarWrapper = styled.ul`
   padding: 40px;
-  max-width: 330px;
+  max-width: 300px;
   border-radius: 6px;
   background-image: url(${desktopImg});
   background-repeat: no-repeat;
@@ -83,7 +83,7 @@ const StepDescription = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   padding: 40px;
   display: flex;

@@ -38,7 +38,6 @@ const Wrapper = styled.aside`
   font-family: ${({ theme }) => theme.fonts.ubuntu};
   flex: 1;
   display: flex;
-  justify-content: center;
   margin: auto;
   gap: 80px;
   max-width: 1000px;

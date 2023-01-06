@@ -73,6 +73,7 @@ const AddOns = (props: Props) => {
                       : prev.filter((option) => option !== addOn.title)
                   )
                 }
+                active={selectedOptions.includes(addOn.title)}
                 title={addOn.title}
                 description={addOn.description}
                 price={addOn.pricePerMonth}

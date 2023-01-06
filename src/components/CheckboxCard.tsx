@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import checkIcon from "../assets/icon-checkmark.svg";
 
 type Props = {
@@ -10,9 +10,20 @@ type Props = {
   title: string;
   description: string;
   price: string;
+  active: boolean;
 };
 
-const Wrapper = styled.div`
+const VARIANTS = {
+  active: css`
+    outline: 1px solid ${({ theme }) => theme.colors["purplish-blue"]};
+    transition: outline 0.1s linear;
+    background-color: ${({ theme }) => theme.colors.alabaster};
+  `,
+};
+
+const Wrapper = styled.div<{
+  active?: boolean;
+}>`
   border: 1px solid ${({ theme }) => theme.colors["light-gray"]};
   padding: 20px;
   padding-left: 0;
@@ -21,6 +32,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${(props) => (props.active ? VARIANTS.active : null)}
+
+  :hover {
+    ${VARIANTS.active}
+  }
 `;
 
 const InputCheckbox = styled.input<{
@@ -47,7 +63,6 @@ const Label = styled.label`
   display: flex;
   gap: 15px;
   align-items: center;
-  cursor: pointer;
 `;
 
 const CardTitle = styled.h5`
@@ -73,7 +88,7 @@ const Icon = styled.img<{
 
 const CheckboxCard = (props: Props) => {
   return (
-    <Wrapper>
+    <Wrapper active={props.active}>
       <Label>
         <InputCheckbox
           type="checkbox"

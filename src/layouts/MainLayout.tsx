@@ -9,6 +9,8 @@ type Props = {
   pageDescription: string;
   onNextClick?: () => void;
   onPreviousClick?: () => void;
+  hidePreviousButton?: boolean;
+  nextButtonType?: "next" | "confirm";
 };
 
 const STEPS = [
@@ -148,7 +150,16 @@ const MainLayout = (props: Props) => {
         </div>
 
         <ButtonWrapper>
-          {location.pathname !== "/summary" && (
+          {props.nextButtonType === "confirm" ? (
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={props.onNextClick}
+              color="confirm"
+            >
+              Confirm
+            </Button>
+          ) : (
             <Button
               variant="secondary"
               size="md"
@@ -159,18 +170,7 @@ const MainLayout = (props: Props) => {
             </Button>
           )}
 
-          {location.pathname === "/summary" && (
-            <Button
-              variant="secondary"
-              size="md"
-              onClick={props.onNextClick}
-              color="confirm"
-            >
-              Confirm
-            </Button>
-          )}
-
-          {location.pathname !== "/personal-info" && (
+          {!props.hidePreviousButton && (
             <Button
               variant="primary"
               size="md"

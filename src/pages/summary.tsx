@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useAppStateContainer } from "../contexts/AppContext";
 import MainLayout from "../layouts/MainLayout";
 
 type Props = {};
@@ -19,14 +20,17 @@ const Summary = (props: Props) => {
     navigate({ pathname: "/summary" });
   };
 
+  const context = useAppStateContainer();
+
   return (
     <MainLayout
       pageTitle="Finishing up"
       pageDescription="Double-check everything looks OK before confirming."
       onNextClick={handleNextClick}
       onPreviousClick={handlePreviousClick}
+      nextButtonType="confirm"
     >
-      <Wrapper>summary</Wrapper>
+      <Wrapper>Summary</Wrapper>
     </MainLayout>
   );
 };

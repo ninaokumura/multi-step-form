@@ -26,6 +26,7 @@ const PersonalInfo = () => {
       pageTitle="Personal info"
       pageDescription="Please provide your name, email address, and phone number."
       onNextClick={handleNextClick}
+      hidePreviousButton
     >
       <FormContent>
         <div>

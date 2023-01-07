@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CheckboxCard from "../components/CheckboxCard";
+import { useAppStateContainer } from "../contexts/AppContext";
 import MainLayout from "../layouts/MainLayout";
 
 type Props = {};
@@ -41,7 +42,10 @@ const ListContainer = styled.ul`
   gap: 20px;
 `;
 const AddOns = (props: Props) => {
+  console.log(AddOns);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  const context = useAppStateContainer();
 
   const navigate = useNavigate();
 
@@ -49,9 +53,21 @@ const AddOns = (props: Props) => {
     navigate({ pathname: "/select-plan" });
   };
 
+  const selectedAddons = selectedOptions
+    .map((option) => ADD_ONS.find((addon) => addon.title === option))
+    .map((option) => ({
+      title: option?.title ?? "",
+      price:
+        (context.subscriptionType === "yearly"
+          ? option?.pricePerYear
+          : option?.pricePerMonth) ?? "",
+    }));
+
   const handleNextClick = () => {
+    context.setSelectedAddons(selectedAddons);
     navigate({ pathname: "/summary" });
   };
+
   return (
     <MainLayout
       pageTitle="Pick add-ons"
@@ -76,7 +92,11 @@ const AddOns = (props: Props) => {
                 active={selectedOptions.includes(addOn.title)}
                 title={addOn.title}
                 description={addOn.description}
-                price={addOn.pricePerMonth}
+                price={
+                  context.subscriptionType === "monthly"
+                    ? addOn.pricePerMonth
+                    : addOn.pricePerYear
+                }
               />
             </ListItem>
           ))}

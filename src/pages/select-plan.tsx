@@ -7,6 +7,7 @@ import proIcon from "../assets/icon-pro.svg";
 import Card from "../stories/Card/Card";
 import MainLayout from "../layouts/MainLayout";
 import Toggle from "../components/Toggle";
+import { SubscriptionType, useAppStateContainer } from "../contexts/AppContext";
 
 const CARD_ITEMS = [
   {
@@ -63,17 +64,34 @@ const ToggleWrapper = styled.div`
 `;
 
 const SelectPlan = () => {
-  const [checked, setChecked] = useState(false);
+  const [subscriptionType, setSubscriptionType] =
+    useState<SubscriptionType>("monthly");
+
+  const context = useAppStateContainer();
 
   const navigate = useNavigate();
 
   const params = useParams();
+
+  const selectedPlan = String(params.choice);
+  const selectedPlanObject = CARD_ITEMS.find(
+    (item) => item.title.toLowerCase() === selectedPlan
+  );
+  const isAnnual = subscriptionType === "yearly";
 
   const handlePreviousClick = () => {
     navigate({ pathname: "/personal-info" });
   };
 
   const handleNextClick = () => {
+    context.setSelectedPlan({
+      title: selectedPlan,
+      price:
+        (isAnnual
+          ? selectedPlanObject?.annualPrice
+          : selectedPlanObject?.monthlyPrice) ?? "",
+    });
+    context.setSubscriptionType(subscriptionType);
     navigate({ pathname: "/add-ons" });
   };
 
@@ -92,11 +110,11 @@ const SelectPlan = () => {
                 src={item.icon}
                 alt={item.title}
                 plan={item.title}
-                price={!checked ? item.monthlyPrice : item.annualPrice}
+                price={!isAnnual ? item.monthlyPrice : item.annualPrice}
                 onClick={() => navigate(item.path)}
                 active={item.path.endsWith(params.choice ?? "none")}
-                message={checked ? "2 months free" : ""}
-                isAnnual={checked}
+                message={isAnnual ? "2 months free" : ""}
+                isAnnual={isAnnual}
               />
             </ListItem>
           ))}
@@ -105,18 +123,20 @@ const SelectPlan = () => {
         <ToggleWrapper>
           <div
             style={{
-              color: !checked ? "hsl(213, 96%,18%)" : "",
+              color: !isAnnual ? "hsl(213, 96%,18%)" : "",
             }}
           >
             Monthly
           </div>
           <Toggle
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
+            checked={isAnnual}
+            onChange={(e) =>
+              setSubscriptionType(e.target.checked ? "yearly" : "monthly")
+            }
           />
           <div
             style={{
-              color: checked ? "hsl(213, 96%,18%)" : "",
+              color: isAnnual ? "hsl(213, 96%,18%)" : "",
             }}
           >
             Yearly

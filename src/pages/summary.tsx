@@ -30,7 +30,18 @@ const Summary = (props: Props) => {
       onPreviousClick={handlePreviousClick}
       nextButtonType="confirm"
     >
-      <Wrapper>Summary</Wrapper>
+      <Wrapper>
+        <div>plan title:{context.selectedPlan.title}</div>
+        <div>price: {context.selectedPlan.price}</div>
+        <div>
+          {context.selectedAddons.map((addon) => (
+            <div>
+              {addon.title}
+              <div>{addon.price}</div>
+            </div>
+          ))}
+        </div>
+      </Wrapper>
     </MainLayout>
   );
 };

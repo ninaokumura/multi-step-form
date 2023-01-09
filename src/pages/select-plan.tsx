@@ -13,23 +13,23 @@ const CARD_ITEMS = [
   {
     icon: arcadeIcon,
     title: "Arcade",
-    monthlyPrice: "$9/mo",
-    annualPrice: "$90/yr",
+    monthlyPrice: "9",
+    annualPrice: "90",
     path: "/select-plan/arcade",
   },
 
   {
     icon: advancedIcon,
     title: "Advanced",
-    monthlyPrice: "$12/mo",
-    annualPrice: "$120/yr",
+    monthlyPrice: "12",
+    annualPrice: "120",
     path: "/select-plan/advanced",
   },
   {
     icon: proIcon,
     title: "Pro",
-    monthlyPrice: "$15/mo",
-    annualPrice: "$150/yr",
+    monthlyPrice: "15",
+    annualPrice: "150",
     path: "/select-plan/pro",
   },
 ];
@@ -110,7 +110,11 @@ const SelectPlan = () => {
                 src={item.icon}
                 alt={item.title}
                 plan={item.title}
-                price={!isAnnual ? item.monthlyPrice : item.annualPrice}
+                price={
+                  !isAnnual
+                    ? `$${item.monthlyPrice}/mo`
+                    : `$${item.annualPrice}/yr`
+                }
                 onClick={() => navigate(item.path)}
                 active={item.path.endsWith(params.choice ?? "none")}
                 message={isAnnual ? "2 months free" : ""}

@@ -3,14 +3,13 @@ import styled from "styled-components";
 import { useAppStateContainer } from "../contexts/AppContext";
 import MainLayout from "../layouts/MainLayout";
 
-type Props = {};
-
 const Wrapper = styled.div`
   font-family: ${({ theme }) => theme.fonts.ubuntu};
   background-color: ${({ theme }) => theme.colors["alabaster"]};
   gap: 80px;
   border-radius: 8px;
   padding: 20px;
+  color: ${({ theme }) => theme.colors["marine-blue"]};
 `;
 
 const PlanSummary = styled.div`
@@ -18,10 +17,14 @@ const PlanSummary = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   gap: 8px;
-  color: ${({ theme }) => theme.colors["marine-blue"]};
   font-weight: 600;
   letter-spacing: 0.5px;
   border-bottom: 1px solid ${({ theme }) => theme.colors["light-gray"]};
+`;
+
+const TitleGap = styled.div`
+  display: flex;
+  gap: 4px;
 `;
 
 const Price = styled.div`
@@ -56,7 +59,8 @@ const AddonsWrapper = styled.div`
 
 const AddonPrice = styled.div`
   color: ${({ theme }) => theme.colors["marine-blue"]};
-  font-weight: 500;
+  opacity: 0.8;
+  font-weight: 600;
 `;
 
 const TotalWrapper = styled.div`
@@ -73,7 +77,7 @@ const TotalPrice = styled.span`
   font-weight: 600;
 `;
 
-const Summary = (props: Props) => {
+const Summary = () => {
   const navigate = useNavigate();
 
   const handlePreviousClick = () => {
@@ -85,6 +89,21 @@ const Summary = (props: Props) => {
   };
 
   const context = useAppStateContainer();
+
+  const planPrice = Number(context.selectedPlan.price);
+
+  const addonsPriceArr = context.selectedAddons.map((addon) =>
+    Number(addon.price)
+  );
+
+  function calculateSum(array: number[]) {
+    return array.reduce(
+      (accumulator: number, value: number) => accumulator + value,
+      0
+    );
+  }
+
+  const totalPlanPrice = calculateSum(addonsPriceArr) + planPrice;
 
   return (
     <MainLayout
@@ -98,35 +117,57 @@ const Summary = (props: Props) => {
         <Wrapper>
           <PlanSummary>
             <div>
-              <span>
-                {context.selectedPlan.title.charAt(0).toLocaleUpperCase() +
-                  context.selectedPlan.title.slice(1).toLowerCase()}
-              </span>
+              <TitleGap>
+                <span>
+                  {context.selectedPlan.title.charAt(0).toLocaleUpperCase() +
+                    context.selectedPlan.title.slice(1).toLowerCase()}
+                </span>
 
-              <span>
-                (
-                {context.subscriptionType.charAt(0).toLocaleUpperCase() +
-                  context.subscriptionType.slice(1).toLowerCase()}
-                )
-              </span>
+                <span>
+                  (
+                  {context.subscriptionType.charAt(0).toLocaleUpperCase() +
+                    context.subscriptionType.slice(1).toLowerCase()}
+                  )
+                </span>
+              </TitleGap>
               <LinkContainer>
                 <ChangeLink to="/select-plan">Change</ChangeLink>
               </LinkContainer>
             </div>
-            <Price>{context.selectedPlan.price}</Price>
+            <Price>
+              ${context.selectedPlan.price}/
+              {context.subscriptionType === "monthly" ? "mo" : "yr"}
+            </Price>
           </PlanSummary>
           <AddonsWrapper>
             {context.selectedAddons.map((addon) => (
               <Addons>
                 <div>{addon.title}</div>
-                <AddonPrice>{addon.price}</AddonPrice>
+
+                <AddonPrice>
+                  +${addon.price}/
+                  {context.subscriptionType === "monthly" ? "mo" : "yr"}
+                </AddonPrice>
               </Addons>
             ))}
           </AddonsWrapper>
         </Wrapper>
+
         <TotalWrapper>
-          <span>Total({context.subscriptionType})</span>
-          <TotalPrice>price/yr</TotalPrice>
+          <TitleGap>
+            <span>
+              Total{" "}
+              <span>
+                (per {context.subscriptionType === "monthly" ? "month" : "year"}
+                )
+              </span>
+            </span>
+          </TitleGap>
+
+          <TotalPrice>
+            +${totalPlanPrice}/
+            {context.subscriptionType === "monthly" ? "mo" : "yr"}
+          </TotalPrice>
         </TotalWrapper>
       </>
     </MainLayout>

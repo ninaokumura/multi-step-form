@@ -5,26 +5,24 @@ import CheckboxCard from "../components/CheckboxCard";
 import { useAppStateContainer } from "../contexts/AppContext";
 import MainLayout from "../layouts/MainLayout";
 
-type Props = {};
-
 const ADD_ONS = [
   {
     title: "Online service",
     description: "Access to multiplayer games",
-    pricePerMonth: "+$1/mo",
-    pricePerYear: "+10/yr",
+    pricePerMonth: "1",
+    pricePerYear: "10",
   },
   {
     title: "Larger storage",
     description: "Extra 1TB of cloud save",
-    pricePerMonth: "+$2/mo",
-    pricePerYear: "+20/yr",
+    pricePerMonth: "2",
+    pricePerYear: "20",
   },
   {
     title: "Customizable profile",
     description: "Custom theme on your profile",
-    pricePerMonth: "+$2/mo",
-    pricePerYear: "+20/yr",
+    pricePerMonth: "2",
+    pricePerYear: "20",
   },
 ];
 
@@ -41,7 +39,7 @@ const ListContainer = styled.ul`
   flex-direction: column;
   gap: 20px;
 `;
-const AddOns = (props: Props) => {
+const AddOns = () => {
   console.log(AddOns);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -94,8 +92,8 @@ const AddOns = (props: Props) => {
                 description={addOn.description}
                 price={
                   context.subscriptionType === "monthly"
-                    ? addOn.pricePerMonth
-                    : addOn.pricePerYear
+                    ? `+$${addOn.pricePerMonth}/mo`
+                    : `+$${addOn.pricePerYear}/yr`
                 }
               />
             </ListItem>

@@ -42,9 +42,9 @@ const ChangeLink = styled(Link)`
   font-size: 13px;
 `;
 
-const Addons = styled.div`
+const Addons = styled.li`
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   color: ${({ theme }) => theme.colors["cool-gray"]};
   font-size: 14px;
@@ -75,6 +75,10 @@ const TotalPrice = styled.span`
   color: ${({ theme }) => theme.colors["purplish-blue"]};
   font-size: 18px;
   font-weight: 600;
+`;
+
+const ListItem = styled.div`
+  padding: 12px 0 12px 0;
 `;
 
 const Summary = () => {
@@ -140,16 +144,18 @@ const Summary = () => {
             </Price>
           </PlanSummary>
           <AddonsWrapper>
-            {context.selectedAddons.map((addon) => (
-              <Addons>
-                <div>{addon.title}</div>
+            <ul>
+              {context.selectedAddons.map((addon) => (
+                <Addons key={addon.title}>
+                  <ListItem>{addon.title}</ListItem>
 
-                <AddonPrice>
-                  +${addon.price}/
-                  {context.subscriptionType === "monthly" ? "mo" : "yr"}
-                </AddonPrice>
-              </Addons>
-            ))}
+                  <AddonPrice>
+                    +${addon.price}/
+                    {context.subscriptionType === "monthly" ? "mo" : "yr"}
+                  </AddonPrice>
+                </Addons>
+              ))}
+            </ul>
           </AddonsWrapper>
         </Wrapper>
 

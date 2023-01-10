@@ -40,10 +40,11 @@ const ListContainer = styled.ul`
   gap: 20px;
 `;
 const AddOns = () => {
-  console.log(AddOns);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
   const context = useAppStateContainer();
+
+  const addons = context.selectedAddons.map((addon) => addon.title);
+
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(addons);
 
   const navigate = useNavigate();
 

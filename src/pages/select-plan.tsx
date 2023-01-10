@@ -64,16 +64,20 @@ const ToggleWrapper = styled.div`
 `;
 
 const SelectPlan = () => {
-  const [subscriptionType, setSubscriptionType] =
-    useState<SubscriptionType>("monthly");
-
   const context = useAppStateContainer();
+
+  const [subscriptionType, setSubscriptionType] = useState<SubscriptionType>(
+    context.subscriptionType
+  );
 
   const navigate = useNavigate();
 
   const params = useParams();
 
-  const selectedPlan = String(params.choice);
+  const selectedPlan = String(
+    params.choice || context.selectedPlan.title.toLowerCase()
+  );
+
   const selectedPlanObject = CARD_ITEMS.find(
     (item) => item.title.toLowerCase() === selectedPlan
   );
@@ -116,7 +120,7 @@ const SelectPlan = () => {
                     : `$${item.annualPrice}/yr`
                 }
                 onClick={() => navigate(item.path)}
-                active={item.path.endsWith(params.choice ?? "none")}
+                active={item.path.endsWith(selectedPlan ?? "none")}
                 message={isAnnual ? "2 months free" : ""}
                 isAnnual={isAnnual}
               />

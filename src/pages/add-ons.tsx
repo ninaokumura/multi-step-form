@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import CheckboxCard from "../components/CheckboxCard";
+import CheckboxCard from "../components/CheckboxCard/CheckboxCard";
 import { useAppStateContainer } from "../contexts/AppContext";
 import MainLayout from "../layouts/MainLayout";
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import Input from "../stories/Input/Input";
+import Input from "../components/Input/Input";
 
 const FormContent = styled.div`
   display: flex;

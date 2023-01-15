@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import styled, { css } from "styled-components";
-import checkIcon from "../assets/icon-checkmark.svg";
+import checkIcon from "../../assets/icon-checkmark.svg";
 
 type Props = {
   checked: boolean;

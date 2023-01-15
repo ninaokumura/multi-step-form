@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import arcadeIcon from "../assets/icon-arcade.svg";
 import advancedIcon from "../assets/icon-advanced.svg";
 import proIcon from "../assets/icon-pro.svg";
-import Card from "../stories/Card/Card";
+import Card from "../components/Card/Card";
 import MainLayout from "../layouts/MainLayout";
-import Toggle from "../components/Toggle";
+import Toggle from "../components/Toggle/Toggle";
 import { SubscriptionType, useAppStateContainer } from "../contexts/AppContext";
 
 const CARD_ITEMS = [
@@ -138,7 +138,7 @@ const SelectPlan = () => {
           </div>
           <Toggle
             checked={isAnnual}
-            onChange={(e) =>
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setSubscriptionType(e.target.checked ? "yearly" : "monthly")
             }
           />

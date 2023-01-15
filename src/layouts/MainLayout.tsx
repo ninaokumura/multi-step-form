@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../stories/Button/Button";
+import Button from "../components/Button/Button";
 import desktopImg from "../assets/bg-sidebar-desktop.svg";
 import { Link, useLocation } from "react-router-dom";
 

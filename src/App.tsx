@@ -5,6 +5,7 @@ import PersonalInfo from "./pages/personal-info";
 import AddOns from "./pages/add-ons";
 import SelectPlan from "./pages/select-plan";
 import Summary from "./pages/summary";
+import Confirmation from "./pages/confirmation";
 import { AppStateProvider } from "./contexts/AppContext";
 
 const MainWrapper = styled.div`
@@ -25,6 +26,8 @@ function App() {
           <Route path="/select-plan/:choice" element={<SelectPlan />} />
           <Route path="/select-plan" element={<SelectPlan />} />
           <Route path="/add-ons" element={<AddOns />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+
           <Route path="/summary" element={<Summary />} />
         </Routes>
       </AppStateProvider>

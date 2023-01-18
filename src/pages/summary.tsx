@@ -89,7 +89,7 @@ const Summary = () => {
   };
 
   const handleNextClick = () => {
-    navigate({ pathname: "/summary" });
+    navigate({ pathname: "/confirmation" });
   };
 
   const context = useAppStateContainer();

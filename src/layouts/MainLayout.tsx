@@ -5,12 +5,13 @@ import { Link, useLocation } from "react-router-dom";
 
 type Props = {
   children: React.ReactElement | string;
-  pageTitle: string;
-  pageDescription: string;
+  pageTitle?: string;
+  pageDescription?: string;
   onNextClick?: () => void;
   onPreviousClick?: () => void;
   hidePreviousButton?: boolean;
   nextButtonType?: "next" | "confirm";
+  hideButtons?: boolean;
 };
 
 const STEPS = [
@@ -43,7 +44,7 @@ const Wrapper = styled.aside`
   margin: auto;
   gap: 80px;
   max-width: 1000px;
-  height: 650px;
+  min-height: 650px;
   border-radius: 8px;
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.white};
@@ -149,38 +150,42 @@ const MainLayout = (props: Props) => {
           <Children>{props.children}</Children>
         </div>
 
-        <ButtonWrapper>
-          {props.nextButtonType === "confirm" ? (
-            <Button
-              variant="secondary"
-              size="md"
-              onClick={props.onNextClick}
-              color="confirm"
-            >
-              Confirm
-            </Button>
-          ) : (
-            <Button
-              variant="secondary"
-              size="md"
-              onClick={props.onNextClick}
-              color="default"
-            >
-              Next step
-            </Button>
-          )}
+        {!props.hideButtons && (
+          <>
+            <ButtonWrapper>
+              {props.nextButtonType === "confirm" ? (
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={props.onNextClick}
+                  color="confirm"
+                >
+                  Confirm
+                </Button>
+              ) : (
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={props.onNextClick}
+                  color="default"
+                >
+                  Next step
+                </Button>
+              )}
 
-          {!props.hidePreviousButton && (
-            <Button
-              variant="primary"
-              size="md"
-              onClick={props.onPreviousClick}
-              color="back"
-            >
-              Go back
-            </Button>
-          )}
-        </ButtonWrapper>
+              {!props.hidePreviousButton && (
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={props.onPreviousClick}
+                  color="back"
+                >
+                  Go back
+                </Button>
+              )}
+            </ButtonWrapper>
+          </>
+        )}
       </ChildrenWrapper>
     </Wrapper>
   );

@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import ConfirmationIcon from "../components/Icons/ConfirmationIcon";
-import MainLayout from "../layouts/MainLayout";
-
-type Props = {};
+import ConfirmationIcon from "../Icons/ConfirmationIcon";
+import MainLayout from "../../layouts/MainLayout";
 
 const Wrapper = styled.div`
   min-width: 500px;
@@ -26,7 +24,7 @@ const Paragraph = styled.p`
   line-height: 28px;
 `;
 
-const Confirmation = (props: Props) => {
+const ConfirmationCard = () => {
   return (
     <MainLayout hideButtons={true}>
       <Wrapper>
@@ -44,4 +42,4 @@ const Confirmation = (props: Props) => {
   );
 };
 
-export default Confirmation;
+export default ConfirmationCard;

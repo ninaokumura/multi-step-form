@@ -64,6 +64,7 @@ const AddOns = () => {
 
   const handleNextClick = () => {
     context.setSelectedAddons(selectedAddons);
+    context.setSubmitted(false);
     navigate({ pathname: "/summary" });
   };
 

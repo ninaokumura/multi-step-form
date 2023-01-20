@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import ConfirmationCard from "../components/confirmation/ConfirmationCard";
 import { useAppStateContainer } from "../contexts/AppContext";
 import MainLayout from "../layouts/MainLayout";
 
@@ -89,7 +90,7 @@ const Summary = () => {
   };
 
   const handleNextClick = () => {
-    navigate({ pathname: "/confirmation" });
+    context.setSubmitted(true);
   };
 
   const context = useAppStateContainer();
@@ -109,74 +110,80 @@ const Summary = () => {
 
   const totalPlanPrice = calculateSum(addonsPriceArr) + planPrice;
 
+  if (context.submitted) {
+    return <ConfirmationCard />;
+  }
+
   return (
-    <MainLayout
-      pageTitle="Finishing up"
-      pageDescription="Double-check everything looks OK before confirming."
-      onNextClick={handleNextClick}
-      onPreviousClick={handlePreviousClick}
-      nextButtonType="confirm"
-    >
-      <>
-        <Wrapper>
-          <PlanSummary>
-            <div>
-              <TitleGap>
-                <span>
-                  {context.selectedPlan.title.charAt(0).toLocaleUpperCase() +
-                    context.selectedPlan.title.slice(1).toLowerCase()}
-                </span>
+    <>
+      <MainLayout
+        pageTitle="Finishing up"
+        pageDescription="Double-check everything looks OK before confirming."
+        onNextClick={handleNextClick}
+        onPreviousClick={handlePreviousClick}
+        nextButtonType="confirm"
+      >
+        <>
+          <Wrapper>
+            <PlanSummary>
+              <div>
+                <TitleGap>
+                  <span>
+                    {context.selectedPlan.title.charAt(0).toLocaleUpperCase() +
+                      context.selectedPlan.title.slice(1).toLowerCase()}
+                  </span>
 
-                <span>
-                  (
-                  {context.subscriptionType.charAt(0).toLocaleUpperCase() +
-                    context.subscriptionType.slice(1).toLowerCase()}
-                  )
-                </span>
-              </TitleGap>
-              <LinkContainer>
-                <ChangeLink to="/select-plan">Change</ChangeLink>
-              </LinkContainer>
-            </div>
-            <Price>
-              ${context.selectedPlan.price}/
-              {context.subscriptionType === "monthly" ? "mo" : "yr"}
-            </Price>
-          </PlanSummary>
-          <AddonsWrapper>
-            <ul>
-              {context.selectedAddons.map((addon) => (
-                <Addons key={addon.title}>
-                  <ListItem>{addon.title}</ListItem>
+                  <span>
+                    (
+                    {context.subscriptionType.charAt(0).toLocaleUpperCase() +
+                      context.subscriptionType.slice(1).toLowerCase()}
+                    )
+                  </span>
+                </TitleGap>
+                <LinkContainer>
+                  <ChangeLink to="/select-plan">Change</ChangeLink>
+                </LinkContainer>
+              </div>
+              <Price>
+                ${context.selectedPlan.price}/
+                {context.subscriptionType === "monthly" ? "mo" : "yr"}
+              </Price>
+            </PlanSummary>
+            <AddonsWrapper>
+              <ul>
+                {context.selectedAddons.map((addon) => (
+                  <Addons key={addon.title}>
+                    <ListItem>{addon.title}</ListItem>
 
-                  <AddonPrice>
-                    +${addon.price}/
-                    {context.subscriptionType === "monthly" ? "mo" : "yr"}
-                  </AddonPrice>
-                </Addons>
-              ))}
-            </ul>
-          </AddonsWrapper>
-        </Wrapper>
+                    <AddonPrice>
+                      +${addon.price}/
+                      {context.subscriptionType === "monthly" ? "mo" : "yr"}
+                    </AddonPrice>
+                  </Addons>
+                ))}
+              </ul>
+            </AddonsWrapper>
+          </Wrapper>
 
-        <TotalWrapper>
-          <TitleGap>
-            <span>
-              Total{" "}
+          <TotalWrapper>
+            <TitleGap>
               <span>
-                (per {context.subscriptionType === "monthly" ? "month" : "year"}
-                )
+                Total{" "}
+                <span>
+                  (per{" "}
+                  {context.subscriptionType === "monthly" ? "month" : "year"})
+                </span>
               </span>
-            </span>
-          </TitleGap>
+            </TitleGap>
 
-          <TotalPrice>
-            +${totalPlanPrice}/
-            {context.subscriptionType === "monthly" ? "mo" : "yr"}
-          </TotalPrice>
-        </TotalWrapper>
-      </>
-    </MainLayout>
+            <TotalPrice>
+              +${totalPlanPrice}/
+              {context.subscriptionType === "monthly" ? "mo" : "yr"}
+            </TotalPrice>
+          </TotalWrapper>
+        </>
+      </MainLayout>
+    </>
   );
 };
 

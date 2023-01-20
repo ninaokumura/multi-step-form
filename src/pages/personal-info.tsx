@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Input from "../components/Input/Input";
+import { useAppStateContainer } from "../contexts/AppContext";
 
 const FormContent = styled.div`
   display: flex;
@@ -15,9 +16,11 @@ const PersonalInfo = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const context = useAppStateContainer();
   const navigate = useNavigate();
 
   const handleNextClick = () => {
+    context.setSubmitted(false);
     navigate({ pathname: "/select-plan" });
   };
 

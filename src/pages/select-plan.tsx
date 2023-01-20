@@ -95,6 +95,7 @@ const SelectPlan = () => {
           ? selectedPlanObject?.annualPrice
           : selectedPlanObject?.monthlyPrice) ?? "",
     });
+    context.setSubmitted(false);
     context.setSubscriptionType(subscriptionType);
     navigate({ pathname: "/add-ons" });
   };

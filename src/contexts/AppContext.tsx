@@ -10,6 +10,7 @@ const useAppState = () => {
   >([]);
   const [subscriptionType, setSubscriptionType] =
     useState<SubscriptionType>("monthly");
+  const [submitted, setSubmitted] = useState(false);
 
   return {
     selectedPlan,
@@ -18,6 +19,8 @@ const useAppState = () => {
     setSelectedAddons,
     subscriptionType,
     setSubscriptionType,
+    submitted,
+    setSubmitted,
   };
 };
 

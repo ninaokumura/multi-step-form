@@ -4,7 +4,10 @@ import { createContainer } from "unstated-next";
 export type SubscriptionType = "monthly" | "yearly";
 
 const useAppState = () => {
-  const [selectedPlan, setSelectedPlan] = useState({ title: "", price: "" });
+  const [selectedPlan, setSelectedPlan] = useState({
+    title: "none",
+    price: "",
+  });
   const [selectedAddons, setSelectedAddons] = useState<
     { title: string; price: string }[]
   >([]);

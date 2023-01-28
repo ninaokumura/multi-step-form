@@ -78,6 +78,8 @@ const SelectPlan = () => {
     params.choice || context.selectedPlan.title.toLowerCase()
   );
 
+  console.log(params.choice);
+
   const selectedPlanObject = CARD_ITEMS.find(
     (item) => item.title.toLowerCase() === selectedPlan
   );
@@ -121,7 +123,7 @@ const SelectPlan = () => {
                     : `$${item.annualPrice}/yr`
                 }
                 onClick={() => navigate(item.path)}
-                active={item.path.endsWith(selectedPlan ?? "none")}
+                active={item.path.endsWith(selectedPlan)}
                 message={isAnnual ? "2 months free" : ""}
                 isAnnual={isAnnual}
               />

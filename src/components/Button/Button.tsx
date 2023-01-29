@@ -8,6 +8,7 @@ type ButtonProps = {
   size?: "sm" | "md";
   shape?: "round";
   color: "default" | "active" | "back" | "confirm";
+  disabled?: boolean;
 };
 
 const VARIANTS = {
@@ -80,6 +81,7 @@ const Button = (props: ButtonProps) => {
       variant={props.variant}
       shape={props.shape}
       color={props.color}
+      disabled={props.disabled}
     >
       {props.children}
     </StyledButton>

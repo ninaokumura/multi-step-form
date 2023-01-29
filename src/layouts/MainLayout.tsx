@@ -133,6 +133,7 @@ const MainLayout = (props: Props) => {
                     ? "active"
                     : "default"
                 }
+                disabled={true}
               />
             </Link>
 

@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <HashRouter>
+      <HashRouter basename="/">
         <App />
       </HashRouter>
     </ThemeProvider>

@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/multi-step-form/static/css/main.35d696d0.css",
+    "main.js": "/multi-step-form/static/js/main.7a1fd991.js",
+    "static/js/787.bf36a60c.chunk.js": "/multi-step-form/static/js/787.bf36a60c.chunk.js",
+    "static/media/Ubuntu-Regular.ttf": "/multi-step-form/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
+    "static/media/Ubuntu-Medium.ttf": "/multi-step-form/static/media/Ubuntu-Medium.e37c5546eb1a6efc4818.ttf",
+    "static/media/Ubuntu-Bold.ttf": "/multi-step-form/static/media/Ubuntu-Bold.fec2d0f1431a6114a6ce.ttf",
+    "static/media/bg-sidebar-desktop.svg": "/multi-step-form/static/media/bg-sidebar-desktop.8f71ab813400ce8f657a6cf4f428b537.svg",
+    "static/media/icon-advanced.svg": "/multi-step-form/static/media/icon-advanced.705bd10c4c1f688871d729633f0ca4ae.svg",
+    "static/media/icon-thank-you.svg": "/multi-step-form/static/media/icon-thank-you.ee753f231cc5a5789b8eb922a96472c0.svg",
+    "index.html": "/multi-step-form/index.html",
+    "static/media/icon-pro.svg": "/multi-step-form/static/media/icon-pro.2e7e377da9c658d608624304a0f8dae6.svg",
+    "static/media/icon-arcade.svg": "/multi-step-form/static/media/icon-arcade.a08c098289a31bb2f66d675be71565b3.svg",
+    "static/media/icon-checkmark.svg": "/multi-step-form/static/media/icon-checkmark.6ba72db67010be44885b1ad4473ab4a8.svg",
+    "main.35d696d0.css.map": "/multi-step-form/static/css/main.35d696d0.css.map",
+    "main.7a1fd991.js.map": "/multi-step-form/static/js/main.7a1fd991.js.map",
+    "787.bf36a60c.chunk.js.map": "/multi-step-form/static/js/787.bf36a60c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35d696d0.css",
+    "static/js/main.7a1fd991.js"
+  ]
+}

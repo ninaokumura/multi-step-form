@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/multi-step-form/static/css/main.35d696d0.css",
-    "main.js": "/multi-step-form/static/js/main.7a1fd991.js",
+    "main.js": "/multi-step-form/static/js/main.2703d86f.js",
     "static/js/787.bf36a60c.chunk.js": "/multi-step-form/static/js/787.bf36a60c.chunk.js",
     "static/media/Ubuntu-Regular.ttf": "/multi-step-form/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
     "static/media/Ubuntu-Medium.ttf": "/multi-step-form/static/media/Ubuntu-Medium.e37c5546eb1a6efc4818.ttf",
@@ -14,11 +14,11 @@
     "static/media/icon-arcade.svg": "/multi-step-form/static/media/icon-arcade.a08c098289a31bb2f66d675be71565b3.svg",
     "static/media/icon-checkmark.svg": "/multi-step-form/static/media/icon-checkmark.6ba72db67010be44885b1ad4473ab4a8.svg",
     "main.35d696d0.css.map": "/multi-step-form/static/css/main.35d696d0.css.map",
-    "main.7a1fd991.js.map": "/multi-step-form/static/js/main.7a1fd991.js.map",
+    "main.2703d86f.js.map": "/multi-step-form/static/js/main.2703d86f.js.map",
     "787.bf36a60c.chunk.js.map": "/multi-step-form/static/js/787.bf36a60c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.35d696d0.css",
-    "static/js/main.7a1fd991.js"
+    "static/js/main.2703d86f.js"
   ]
 }
